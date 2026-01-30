@@ -1,39 +1,31 @@
 from flask import Flask, request, jsonify
 import openai
 import os
-from flask_cors import CORS
-from dotenv import load_dotenv
 
-load_dotenv()
 app = Flask(__name__)
-CORS(app)
 
-openai.api_key = os.getenv("GEMINI_API_KEY")  # خزن المفتاح في .env
+# استخدم متغير البيئة
+openai.api_key = os.getenv("GEMINI_API_KEY")
 
 @app.route('/generate_idea', methods=['POST'])
 def generate_idea():
     data = request.json
     prompt = f"""
-Generate a creative, logical YouTube video idea based on:
+Generate a creative, logical YouTube video idea based on the following:
 Video type: {data['video_type']}
-Content type: {data['content_type']}
-Duration: {data['duration']}
-Participants: {data['participants']}
-Audience: {data['audience']}
+Number of participants: {data['participants']}
+Video duration: {data['duration']}
+Target audience: {data['audience']}
 Gender focus: {data['gender']}
+Category: {data['category']}
 Budget: {data['budget']}
-Output: Title, Full Description, Optional Enhancements, Suggested Hashtags
 """
-    try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=500
-        )
-        idea_text = response.choices[0].message.content
-        return jsonify({"idea": idea_text})
-    except Exception as e:
-        return jsonify({"idea": f"Error: {str(e)}"})
+    response = openai.ChatCompletion.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=300
+    )
+    return jsonify({"idea": response.choices[0].message.content})
 
-if __name__ == "__main__":
-    app.run()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
