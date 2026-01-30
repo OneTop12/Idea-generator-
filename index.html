@@ -1,89 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI YouTube Idea Generator</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Idea Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+    h1 { color: #333; }
+    form { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; }
+    input, select, button { width: 100%; padding: 8px; margin: 8px 0; border-radius: 4px; border: 1px solid #ccc; }
+    #ideaContent { margin-top: 20px; background: #fff; padding: 15px; border-radius: 8px; white-space: pre-wrap; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>AI YouTube Idea Generator</h1>
-    <form id="videoForm">
-      <label>Video Type:</label>
-      <select id="videoType">
-        <option>YouTube</option>
-        <option>YouTube Shorts</option>
-        <option>TikTok</option>
-        <option>Instagram Reels</option>
-      </select>
 
-      <label>Content Type:</label>
-      <select id="contentType">
-        <option>Educational</option>
-        <option>Entertainment</option>
-        <option>Challenges</option>
-        <option>Podcast</option>
-        <option>Storytelling</option>
-        <option>Documentary</option>
-        <option>Reviews</option>
-        <option>Gaming</option>
-      </select>
+<h1>YouTube Idea Generator</h1>
+<form id="videoForm">
+  <input type="text" id="videoType" placeholder="Video Type (e.g., vlog, tutorial)" required>
+  <input type="text" id="contentType" placeholder="Content Type (e.g., tech, comedy)" required>
+  <select id="videoDuration">
+    <option value="short">Less than 5 min</option>
+    <option value="medium">5-30 min</option>
+    <option value="long">30+ min</option>
+  </select>
+  <input type="number" id="participants" placeholder="Number of Participants" required>
+  <select id="audience">
+    <option value="kids">Kids</option>
+    <option value="teens">Teens</option>
+    <option value="adults">Adults</option>
+    <option value="seniors">Seniors</option>
+  </select>
+  <select id="gender">
+    <option value="any">Any</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+  <input type="text" id="budget" placeholder="Budget" required>
+  <select id="boosts" multiple>
+    <option value="thumbnail">Thumbnail Idea</option>
+    <option value="hashtag">Suggested Hashtags</option>
+    <option value="extras">Optional Enhancements</option>
+  </select>
+  <button type="submit">Generate</button>
+</form>
 
-      <label>Video Duration:</label>
-      <select id="videoDuration">
-        <option>Less than 5 minutes</option>
-        <option>5–30 minutes</option>
-        <option>1 hour or more</option>
-      </select>
+<div id="ideaContent"></div>
 
-      <label>Number of Participants:</label>
-      <select id="participants">
-        <option>1</option>
-        <option>2</option>
-        <option>Group</option>
-      </select>
+<script>
+const form = document.getElementById('videoForm');
+const ideaContent = document.getElementById('ideaContent');
 
-      <label>Target Audience (Age):</label>
-      <select id="audience">
-        <option>Kids</option>
-        <option>Teens</option>
-        <option>Adults</option>
-        <option>Seniors</option>
-      </select>
+// ضع هنا الرابط العام اللي طلعلك من ngrok
+const BACKEND_URL = 'https://rolande-reverberative-unaromatically.ngrok-free.dev/generate_idea';
 
-      <label>Target Gender:</label>
-      <select id="gender">
-        <option>Male</option>
-        <option>Female</option>
-        <option>All</option>
-      </select>
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  ideaContent.textContent = 'Generating...';
 
-      <label>Budget:</label>
-      <select id="budget">
-        <option>No Budget</option>
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
-      </select>
+  const data = {
+    video_type: document.getElementById('videoType').value,
+    contentType: document.getElementById('contentType').value,
+    duration: document.getElementById('videoDuration').value,
+    participants: document.getElementById('participants').value,
+    audience: document.getElementById('audience').value,
+    gender: document.getElementById('gender').value,
+    budget: document.getElementById('budget').value,
+    boosts: Array.from(document.getElementById('boosts').selectedOptions).map(o => o.value)
+  };
 
-      <label>Optional Boosts:</label>
-      <select id="boosts" multiple>
-        <option>Add text on video</option>
-        <option>Visual effects</option>
-        <option>Music</option>
-        <option>Suggested hashtags</option>
-      </select>
+  try {
+    const res = await fetch(BACKEND_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    ideaContent.textContent = json.idea || 'No idea returned.';
+  } catch (err) {
+    ideaContent.textContent = 'Error generating idea. Check your backend or network.';
+    console.error(err);
+  }
+});
+</script>
 
-      <button type="submit">Generate Idea</button>
-    </form>
-
-    <div id="result">
-      <h2>Generated Idea</h2>
-      <div id="ideaContent"></div>
-    </div>
-  </div>
-
-<script src="script.js"></script>
 </body>
 </html>
