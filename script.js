@@ -1,8 +1,8 @@
 const form = document.getElementById('videoForm');
 const ideaContent = document.getElementById('ideaContent');
 
-// الرابط العام من ngrok
-const BACKEND_URL = "https://rolande-reverberative-unaromatically.ngrok-free.dev";
+// استخدم الرابط العام اللي طلع من ngrok
+const BACKEND_URL = "https://rolande-reverberative-unaromatically.ngrok-free.dev/generate_idea";
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -10,26 +10,27 @@ form.addEventListener('submit', async (e) => {
 
   const data = {
     video_type: document.getElementById('videoType').value,
-    content_type: document.getElementById('contentType').value,
+    category: document.getElementById('contentType').value,
     duration: document.getElementById('videoDuration').value,
     participants: document.getElementById('participants').value,
     audience: document.getElementById('audience').value,
     gender: document.getElementById('gender').value,
-    category: document.getElementById('category').value,
     budget: document.getElementById('budget').value
   };
 
   try {
-    const response = await fetch(`${BACKEND_URL}/generate_idea`, {
+    const response = await fetch(BACKEND_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(data)
     });
 
     const result = await response.json();
     ideaContent.innerHTML = `<pre>${result.idea}</pre>`;
   } catch (err) {
-    ideaContent.innerHTML = 'Error generating idea.';
+    ideaContent.innerHTML = 'Error generating idea. Check your backend or network.';
     console.error(err);
   }
 });
