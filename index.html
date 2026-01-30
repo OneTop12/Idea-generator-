@@ -2,92 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>YouTube Idea Generator</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-}
-h1 { color: #9b59b6; }
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 300px;
-}
-input, textarea, select, button {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-}
-input, textarea, select { width: 100%; }
-button {
-    background-color: #9b59b6;
-    color: #fff;
-    cursor: pointer;
-}
-button:hover { background-color: #8e44ad; }
-#result {
-    margin-top: 20px;
-    background-color: #111;
-    padding: 15px;
-    border-radius: 8px;
-    width: 300px;
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI YouTube Idea Generator</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <h1>AI YouTube Idea Generator</h1>
+    <form id="videoForm">
+      <label>Video Type:</label>
+      <select id="videoType">
+        <option>YouTube</option>
+        <option>YouTube Shorts</option>
+        <option>TikTok</option>
+        <option>Instagram Reels</option>
+      </select>
 
-<h1>YouTube Idea Generator</h1>
-<form id="ideaForm">
-    <input type="text" id="hook" placeholder="Enter your hook" required>
-    <textarea id="description" placeholder="Explain your idea briefly" rows="3"></textarea>
-    <input type="text" id="hashtags" placeholder="Optional hashtags (comma separated)">
-    <button type="submit">Generate Idea</button>
-</form>
+      <label>Content Type:</label>
+      <select id="contentType">
+        <option>Educational</option>
+        <option>Entertainment</option>
+        <option>Challenges</option>
+        <option>Podcast</option>
+        <option>Storytelling</option>
+        <option>Documentary</option>
+        <option>Reviews</option>
+        <option>Gaming</option>
+      </select>
 
-<div id="result"></div>
+      <label>Video Duration:</label>
+      <select id="videoDuration">
+        <option>Less than 5 minutes</option>
+        <option>5–30 minutes</option>
+        <option>1 hour or more</option>
+      </select>
 
-<script>
-const API_KEY = "AIzaSyCkF0zQ_Dtc1iyZqDA763DTSutSwadAs30";
+      <label>Number of Participants:</label>
+      <select id="participants">
+        <option>1</option>
+        <option>2</option>
+        <option>Group</option>
+      </select>
 
-async function generateIdea(hook, description, hashtags) {
-    const prompt = `Create a YouTube video idea based on this:\nHook: ${hook}\nDescription: ${description}\nHashtags: ${hashtags}\nFormat: Title + Short script + Recommended hashtags`;
-    
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + API_KEY
-        },
-        body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [{role: "user", content: prompt}],
-            max_tokens: 200
-        })
-    });
-    
-    const data = await response.json();
-    return data.choices[0].message.content;
-}
+      <label>Target Audience (Age):</label>
+      <select id="audience">
+        <option>Kids</option>
+        <option>Teens</option>
+        <option>Adults</option>
+        <option>Seniors</option>
+      </select>
 
-document.getElementById("ideaForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const hook = document.getElementById("hook").value;
-    const description = document.getElementById("description").value;
-    const hashtags = document.getElementById("hashtags").value;
+      <label>Target Gender:</label>
+      <select id="gender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>All</option>
+      </select>
 
-    document.getElementById("result").textContent = "Generating...";
-    const idea = await generateIdea(hook, description, hashtags);
-    document.getElementById("result").textContent = idea;
-});
-</script>
+      <label>Budget:</label>
+      <select id="budget">
+        <option>No Budget</option>
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
 
+      <label>Optional Boosts:</label>
+      <select id="boosts" multiple>
+        <option>Add text on video</option>
+        <option>Visual effects</option>
+        <option>Music</option>
+        <option>Suggested hashtags</option>
+      </select>
+
+      <button type="submit">Generate Idea</button>
+    </form>
+
+    <div id="result">
+      <h2>Generated Idea</h2>
+      <div id="ideaContent"></div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
 </body>
 </html>
