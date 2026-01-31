@@ -25,8 +25,13 @@ document.getElementById("videoForm").addEventListener("submit", async function(e
         body: JSON.stringify(data)
       }
     );
+
     const result = await response.json();
-    resultBox.innerText = result.idea;
+
+    // اجعل الرد مختصر (أول 3 أسطر تقريبًا)
+    let shortIdea = result.idea.split('\n').slice(0, 3).join(' ');
+    resultBox.innerText = shortIdea;
+
   } catch (error) {
     resultBox.innerText = "Test idea (fallback)";
     console.error(error);
