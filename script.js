@@ -1,21 +1,26 @@
-document.getElementById("videoForm").addEventListener("submit", async function(e) {
+document.getElementById("videoForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const loader = document.getElementById("loader");
+  const resultBox = document.getElementById("ideaContent");
+
+  loader.classList.remove("hidden");
+  resultBox.innerHTML = "";
+
   const data = {
-    type: document.getElementById("videoType").value,
-    content_type: document.getElementById("contentType").value,
-    duration: document.getElementById("videoDuration").value,
-    participants: document.getElementById("participants").value,
-    audience: document.getElementById("audience").value,
-    gender: document.getElementById("gender").value,
-    budget: document.getElementById("budget").value
+    platform: platform.value,
+    duration: videoDuration.value,
+    location: location.value,
+    content_type: contentType.value,
+    audience: audience.value,
+    gender: gender.value,
+    budget: budget.value,
+    participants: participants.value,
+    participants_type: participantsType.value
   };
 
-  const resultBox = document.getElementById("ideaContent");
-  resultBox.innerText = "Generating...";
-
   try {
-    const response = await fetch(
+    const res = await fetch(
       "https://idea-generator-production-0421.up.railway.app/generate_idea",
       {
         method: "POST",
@@ -23,10 +28,17 @@ document.getElementById("videoForm").addEventListener("submit", async function(e
         body: JSON.stringify(data)
       }
     );
-    const result = await response.json();
-    resultBox.innerText = result.idea;
-  } catch (error) {
-    resultBox.innerText = "Test idea (fallback)";
-    console.error(error);
+
+    const json = await res.json();
+
+    resultBox.innerHTML = `
+      <h3>Video Idea</h3>
+      <p>${json.idea}</p>
+    `;
+  } catch (err) {
+    resultBox.innerText = "Something went wrong.";
+    console.error(err);
+  } finally {
+    loader.classList.add("hidden");
   }
 });
