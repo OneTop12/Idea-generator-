@@ -1,32 +1,41 @@
-document.getElementById("videoForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+// SCROLL TO FORM ON CLICK
+document.getElementById('clickScroll').addEventListener('click', () => {
+  document.getElementById('ideaForm').scrollIntoView({behavior:'smooth'});
+});
 
-  const data = {
-    type: document.getElementById("videoType").value,
-    content_type: document.getElementById("contentType").value,
-    duration: document.getElementById("videoDuration").value,
-    participants: document.getElementById("participants").value,
-    audience: document.getElementById("audience").value,
-    gender: document.getElementById("gender").value,
-    budget: document.getElementById("budget").value
-  };
+// GENERATE IDEAS
+document.getElementById('generateBtn').addEventListener('click', () => {
+  const platform = document.getElementById('platform').value;
+  const duration = parseFloat(document.getElementById('duration').value);
+  const hook = document.getElementById('hook').value;
+  const location = document.getElementById('location').value;
 
-  const resultBox = document.getElementById("ideaContent");
-  resultBox.innerText = "Generating...";
+  const checkboxes = document.querySelectorAll('.checkbox-group input:checked');
+  const contentTypes = Array.from(checkboxes).map(cb => cb.value);
 
-  try {
-    const response = await fetch(
-      "https://idea-generator-production-0421.up.railway.app/generate_idea",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      }
-    );
-    const result = await response.json();
-    resultBox.innerText = result.idea;
-  } catch (error) {
-    resultBox.innerText = "Test idea (fallback)";
-    console.error(error);
-  }
+  // ANALYZE SHORT OR LONG
+  let typeSuggestion = '';
+  if(duration <= 3 && platform==='youtube') typeSuggestion = 'This is a YouTube Short';
+  else typeSuggestion = 'Standard Content';
+
+  // GENERATE IDEAS
+  const ideas = [
+    `Idea based on platform: ${platform}`,
+    `Content Type Suggestion: ${typeSuggestion}`,
+    hook ? `Hook: ${hook}` : 'No Hook specified',
+    location ? `Suggested Location: ${location}` : 'No location specified',
+    contentTypes.length ? `Selected Content Types: ${contentTypes.join(', ')}` : 'No Content Type selected',
+    `Hashtags suggestion: #creative #content #ideas`
+  ];
+
+  const ideasList = document.getElementById('ideasList');
+  ideasList.innerHTML = '';
+  ideas.forEach(i => {
+    const li = document.createElement('li');
+    li.textContent = i;
+    ideasList.appendChild(li);
+  });
+
+  // Scroll to output
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
 });
