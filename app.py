@@ -6,7 +6,7 @@ import google.generativeai as genai
 app = Flask(__name__)
 CORS(app)
 
-# ربط المفتاح الجديد من متغير البيئة
+# المفتاح من متغير البيئة
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 @app.route("/")
@@ -32,8 +32,8 @@ def generate_idea():
     """
 
     try:
-        # الطريقة الصحيحة للموديل الحالي (Gemini Free Tier)
-        model = genai.GenerativeModel("models/gemini-1.5-flash")
+        # موديل متاح اليوم بشكل رسمي ومجاني
+        model = genai.GenerativeModel("models/text-bison-001")
         response = model.generate_content(prompt)
         return jsonify({"idea": response.text})
 
