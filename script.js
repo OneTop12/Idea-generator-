@@ -29,13 +29,23 @@ document.getElementById("videoForm").addEventListener("submit", async function(e
     );
 
     const result = await response.json();
+    let text = result.idea || result.text || "";
 
-    let ideaText = `Hook: ${result.hook || ""}\n\n`;
-    ideaText += `Description: ${result.description || ""}\n\n`;
-    ideaText += `Hashtags: ${result.hashtags || ""}\n\n`;
-    ideaText += `Strengths: ${result.strengths || ""}\n\n`;
-    ideaText += `Suggestions: ${result.suggestions || ""}`;
+    // حاول نقسم النص على العناصر (لو الموديل رجعهم بالشكل "Hook: ... Description: ...")
+    const hookMatch = text.match(/Hook:\s*(.+?)(?=\n|$)/i);
+    const descriptionMatch = text.match(/Description:\s*(.+?)(?=\n|$)/i);
+    const hashtagsMatch = text.match(/Hashtags:\s*(.+?)(?=\n|$)/i);
+    const strengthsMatch = text.match(/Strengths:\s*(.+?)(?=\n|$)/i);
+    const suggestionsMatch = text.match(/Suggestions:\s*(.+?)(?=\n|$)/i);
 
+    let ideaText = "";
+    ideaText += `Hook: ${hookMatch ? hookMatch[1] : text}\n\n`;
+    ideaText += `Description: ${descriptionMatch ? descriptionMatch[1] : text}\n\n`;
+    ideaText += `Hashtags: ${hashtagsMatch ? hashtagsMatch[1] : ""}\n\n`;
+    ideaText += `Strengths: ${strengthsMatch ? strengthsMatch[1] : ""}\n\n`;
+    ideaText += `Suggestions: ${suggestionsMatch ? suggestionsMatch[1] : ""}`;
+
+    // اختصار النص إذا طويل
     if (ideaText.length > 800) ideaText = ideaText.slice(0, 800) + "...";
 
     resultBox.innerText = ideaText;
