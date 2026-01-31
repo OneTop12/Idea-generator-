@@ -1,13 +1,19 @@
-async function generateIdea() {
-  const resultBox = document.getElementById("result");
-  resultBox.innerText = "Generating...";
+document.getElementById("videoForm").addEventListener("submit", async function(e) {
+  e.preventDefault(); // يمنع الصفحة من إعادة التحميل
 
   const data = {
     platform: "YouTube",
-    type: "Creative video",
-    audience: "General audience",
-    goal: "High engagement"
+    type: document.getElementById("videoType").value,
+    content_type: document.getElementById("contentType").value,
+    duration: document.getElementById("videoDuration").value,
+    participants: document.getElementById("participants").value,
+    audience: document.getElementById("audience").value,
+    gender: document.getElementById("gender").value,
+    budget: document.getElementById("budget").value
   };
+
+  const resultBox = document.getElementById("ideaContent");
+  resultBox.innerText = "Generating...";
 
   try {
     const response = await fetch(
@@ -28,4 +34,4 @@ async function generateIdea() {
     resultBox.innerText = "Error generating idea";
     console.error(error);
   }
-}
+});
