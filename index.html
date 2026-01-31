@@ -1,105 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Content Idea Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Video Idea Generator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Background -->
-  <div class="background"></div>
-
   <header>
-    <h1 class="title">Content Idea Generator</h1>
-    <p class="subtitle">AI-powered video ideas, done right.</p>
-    <span class="scroll-hint" onclick="document.getElementById('videoForm').scrollIntoView({behavior:'smooth'})">
-      click ↓
-    </span>
+    <h1>Creative Video Idea Generator</h1>
+    <p>Generate powerful, creative YouTube video ideas instantly!</p>
   </header>
 
   <main>
     <form id="videoForm">
-
-      <label>Platform</label>
-      <select id="platform" required>
-        <option>YouTube</option>
-        <option>TikTok</option>
-        <option>Instagram</option>
-      </select>
-
-      <label>Video Duration</label>
-      <select id="videoDuration" required>
-        <option>Less than 3 minutes</option>
-        <option>3–8 minutes</option>
-        <option>8+ minutes</option>
-      </select>
-
-      <label>Filming Location (available)</label>
-      <input type="text" id="location" placeholder="Room, street, studio..." required>
-
-      <label>Content Type</label>
-      <select id="contentType" required>
-        <option>Gaming</option>
-        <option>Educational</option>
-        <option>Entertainment</option>
-        <option>Challenge</option>
-        <option>Podcast</option>
-      </select>
-
-      <label>Target Audience</label>
-      <select id="audience" required>
-        <option>Kids</option>
-        <option>Teens</option>
-        <option>Adults</option>
-        <option>All ages</option>
-      </select>
-
-      <label>Target Gender</label>
-      <select id="gender" required>
-        <option>Any</option>
-        <option>Male</option>
-        <option>Female</option>
-      </select>
-
-      <label>Budget</label>
-      <select id="budget" required>
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
-      </select>
-
-      <label>Number of Participants</label>
-      <input type="number" id="participants" min="1" required>
-
-      <label>Participants Type</label>
-      <select id="participantsType" required>
-        <option>Friends</option>
-        <option>Guests</option>
-        <option>Strangers</option>
-      </select>
-
-      <button type="submit">
-        Generate
-      </button>
-
-      <!-- Loader -->
-      <div id="loader" class="three-body hidden">
-        <div class="three-body__dot"></div>
-        <div class="three-body__dot"></div>
-        <div class="three-body__dot"></div>
+      <div class="form-group">
+        <label for="videoType">Platform / Video Type</label>
+        <input type="text" id="videoType" required>
       </div>
 
+      <div class="form-group">
+        <label for="contentType">Content Type</label>
+        <input type="text" id="contentType" required>
+      </div>
+
+      <div class="form-group">
+        <label for="videoDuration">Duration</label>
+        <input type="text" id="videoDuration" required>
+      </div>
+
+      <div class="form-group">
+        <label for="participants">Number of Participants</label>
+        <input type="text" id="participants" required>
+      </div>
+
+      <div class="form-group">
+        <label for="audience">Target Audience</label>
+        <input type="text" id="audience" required>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender Focus</label>
+        <input type="text" id="gender" required>
+      </div>
+
+      <div class="form-group">
+        <label for="budget">Budget</label>
+        <input type="text" id="budget" required>
+      </div>
+
+      <div class="form-group">
+        <label for="participantsType">Type of Participants</label>
+        <input type="text" id="participantsType" required>
+      </div>
+
+      <button type="submit">Generate Idea</button>
     </form>
 
-    <section id="ideaContent"></section>
+    <section id="ideaContent">
+      <div class="idea-box" id="ideaTitle"></div>
+      <div class="idea-box" id="ideaDescription"></div>
+      <div class="idea-box" id="ideaHashtags"></div>
+      <div class="idea-box" id="ideaStrengths"></div>
+      <div class="idea-box" id="ideaSuggestions"></div>
+    </section>
   </main>
 
   <footer>
-    <p>© 2026 Content Idea Generator</p>
+    <p>&copy; 2026 Creative Ideas Generator</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
