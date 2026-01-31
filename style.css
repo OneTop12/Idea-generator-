@@ -1,39 +1,110 @@
-/* نسخة أولية - جاهزة للتطوير لاحقًا */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  margin: 0;
-  padding: 0;
+/* Background */
+.background {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(125% 125% at 50% 10%, #fff 40%, #63e 100%);
+  z-index: -1;
 }
-header, footer {
-  background-color: #222;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
+
+/* Header */
+.title {
+  color: #5D3FD3;
+  font-size: 2.5rem;
 }
-main {
-  padding: 2rem;
-  max-width: 600px;
-  margin: auto;
+
+.subtitle {
+  opacity: 0.8;
 }
-input, button {
-  display: block;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  width: 100%;
-}
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #45a049;
-}
-#ideaContent {
+
+.scroll-hint {
+  display: inline-block;
   margin-top: 1rem;
-  padding: 1rem;
+  color: #5D3FD3;
+  cursor: pointer;
+  animation: float 1.5s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+  100% { transform: translateY(0); }
+}
+
+/* Form */
+select, input {
+  border-radius: 8px;
   border: 1px solid #ccc;
-  background-color: #fff;
+}
+
+/* Loader */
+.hidden { display: none; }
+
+/* Three body loader (كما هو) */
+.three-body {
+ --uib-size: 35px;
+ --uib-speed: 0.8s;
+ --uib-color: #5D3FD3;
+ position: relative;
+ display: inline-block;
+ height: var(--uib-size);
+ width: var(--uib-size);
+ animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
+ margin: 1rem auto;
+}
+
+.three-body__dot {
+ position: absolute;
+ height: 100%;
+ width: 30%;
+}
+
+.three-body__dot:after {
+ content: '';
+ position: absolute;
+ width: 100%;
+ padding-bottom: 100%;
+ background-color: var(--uib-color);
+ border-radius: 50%;
+}
+
+.three-body__dot:nth-child(1) {
+ bottom: 5%;
+ left: 0;
+ transform: rotate(60deg);
+ transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(1)::after {
+ animation: wobble1 var(--uib-speed) infinite ease-in-out;
+}
+
+.three-body__dot:nth-child(2) {
+ bottom: 5%;
+ right: 0;
+ transform: rotate(-60deg);
+ transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(2)::after {
+ animation: wobble1 var(--uib-speed) infinite ease-in-out;
+}
+
+.three-body__dot:nth-child(3) {
+ bottom: -5%;
+ left: 0;
+ transform: translateX(116.666%);
+}
+
+.three-body__dot:nth-child(3)::after {
+ animation: wobble2 var(--uib-speed) infinite ease-in-out;
+}
+
+@keyframes spin78236 {
+ 100% { transform: rotate(360deg); }
+}
+@keyframes wobble1 {
+ 50% { transform: translateY(-66%) scale(0.65); }
+}
+@keyframes wobble2 {
+ 50% { transform: translateY(66%) scale(0.65); }
 }
