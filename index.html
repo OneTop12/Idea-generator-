@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ideas Generator</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Idea Generator</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Ideas Generator</h1>
-    <p>Generate creative YouTube video ideas instantly.</p>
-  </header>
 
-  <main>
-    <form id="videoForm">
-      <label for="videoType">Video Type:</label>
-      <input type="text" id="videoType" required>
+<!-- BACKGROUND -->
+<div class="background"></div>
 
-      <label for="contentType">Content Type:</label>
-      <input type="text" id="contentType" required>
+<!-- HEADER -->
+<header class="header">
+  <h1 class="title">Content Idea Generator</h1>
+  <p class="subtitle" id="clickScroll">Click</p>
+</header>
 
-      <label for="videoDuration">Video Duration:</label>
-      <input type="text" id="videoDuration" required>
+<!-- MAIN FORM SECTION -->
+<section id="ideaForm" class="form-section">
+  <h2>Fill Your Details</h2>
+  
+  <!-- VIDEO PLATFORM -->
+  <label for="platform">Video Platform:</label>
+  <select id="platform">
+    <option value="youtube">YouTube</option>
+    <option value="tiktok">TikTok</option>
+    <option value="instagram">Instagram</option>
+  </select>
 
-      <label for="participants">Participants:</label>
-      <input type="text" id="participants" required>
+  <!-- VIDEO LENGTH -->
+  <label for="duration">Video Duration (minutes):</label>
+  <input type="number" id="duration" placeholder="Ex: 2.5">
 
-      <label for="audience">Target Audience:</label>
-      <input type="text" id="audience" required>
+  <!-- HOOK -->
+  <label for="hook">Hook:</label>
+  <input type="text" id="hook" placeholder="Optional">
 
-      <label for="gender">Gender Focus:</label>
-      <input type="text" id="gender" required>
+  <!-- LOCATION (free input) -->
+  <label for="location">Available Location for Shooting:</label>
+  <input type="text" id="location" placeholder="Describe your location">
 
-      <label for="budget">Budget:</label>
-      <input type="text" id="budget" required>
+  <!-- CHECKBOXES -->
+  <label>Content Type:</label>
+  <div class="checkbox-group">
+    <label><input type="checkbox" value="short"> Short Video / Reel</label>
+    <label><input type="checkbox" value="long"> Long Video</label>
+    <label><input type="checkbox" value="story"> Story Format</label>
+  </div>
 
-      <button type="submit">Generate Idea</button>
-    </form>
+  <!-- SUBMIT -->
+  <button id="generateBtn">Generate Ideas</button>
+</section>
 
-    <section id="ideaContent"></section>
-  </main>
+<!-- OUTPUT SECTION -->
+<section id="output" class="output-section">
+  <h2>Generated Ideas:</h2>
+  <ul id="ideasList"></ul>
+</section>
 
-  <footer>
-    <p>&copy; 2026 Ideas Generator</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
