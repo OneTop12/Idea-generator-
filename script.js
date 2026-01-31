@@ -28,9 +28,19 @@ document.getElementById("videoForm").addEventListener("submit", async function(e
       }
     );
     const result = await response.json();
-    // هنا نعرض نتيجة مختصرة لو طويلة
-    const ideaText = result.idea.length > 300 ? result.idea.slice(0, 300) + "..." : result.idea;
+
+    // توليد النتيجة بشكل منسق
+    let ideaText = `Hook: ${result.hook || ""}\n\n`;
+    ideaText += `Description: ${result.description || ""}\n\n`;
+    ideaText += `Hashtags: ${result.hashtags || ""}\n\n`;
+    ideaText += `Strengths: ${result.strengths || ""}\n\n`;
+    ideaText += `Suggestions: ${result.suggestions || ""}`;
+
+    // تقصير النتيجة لو طويلة
+    if (ideaText.length > 800) ideaText = ideaText.slice(0, 800) + "...";
+
     resultBox.innerText = ideaText;
+
   } catch (error) {
     resultBox.innerText = "Test idea (fallback)";
     console.error(error);
