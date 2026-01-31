@@ -18,7 +18,7 @@ header h1 {
 }
 
 main.ui {
-  max-width: 540px;
+  max-width: 600px;
   margin: auto;
   padding: 1.5rem;
 }
@@ -32,7 +32,6 @@ main.ui {
 
 .field {
   margin-bottom: 1.2rem;
-  text-align: left;
 }
 
 .field label {
@@ -43,9 +42,7 @@ main.ui {
   margin-bottom: 0.3rem;
 }
 
-.field input,
-.field textarea,
-.field select {
+.field input, .field textarea, .field select {
   width: 100%;
   padding: 0.75rem;
   border-radius: 12px;
@@ -55,9 +52,7 @@ main.ui {
   background: #fff;
 }
 
-textarea {
-  resize: vertical;
-}
+textarea { resize: vertical; }
 
 .row {
   display: flex;
@@ -89,7 +84,7 @@ textarea {
   border-radius: 16px;
   background: #f0f0ff;
   font-size: 0.95rem;
-  white-space: pre-wrap;
+  white-space: pre-line;
 }
 
 footer {
@@ -100,7 +95,5 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .row {
-    flex-direction: column;
-  }
+  .row { flex-direction: column; }
 }
