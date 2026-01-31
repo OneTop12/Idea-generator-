@@ -1,44 +1,32 @@
-document.getElementById("videoForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+document.getElementById("videoForm").addEventListener("submit", async function(e) {
+e.preventDefault();
 
-  const loader = document.getElementById("loader");
-  const resultBox = document.getElementById("ideaContent");
+const data = {
+type: document.getElementById("videoType").value,
+content_type: document.getElementById("contentType").value,
+duration: document.getElementById("videoDuration").value,
+participants: document.getElementById("participants").value,
+audience: document.getElementById("audience").value,
+gender: document.getElementById("gender").value,
+budget: document.getElementById("budget").value
+};
 
-  loader.classList.remove("hidden");
-  resultBox.innerHTML = "";
+const resultBox = document.getElementById("ideaContent");
+resultBox.innerText = "Generating...";
 
-  const data = {
-    platform: platform.value,
-    duration: videoDuration.value,
-    location: location.value,
-    content_type: contentType.value,
-    audience: audience.value,
-    gender: gender.value,
-    budget: budget.value,
-    participants: participants.value,
-    participants_type: participantsType.value
-  };
-
-  try {
-    const res = await fetch(
-      "https://idea-generator-production-0421.up.railway.app/generate_idea",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      }
-    );
-
-    const json = await res.json();
-
-    resultBox.innerHTML = `
-      <h3>Video Idea</h3>
-      <p>${json.idea}</p>
-    `;
-  } catch (err) {
-    resultBox.innerText = "Something went wrong.";
-    console.error(err);
-  } finally {
-    loader.classList.add("hidden");
-  }
+try {
+const response = await fetch(
+"https://idea-generator-production-0421.up.railway.app/generate_idea",
+{
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(data)
+}
+);
+const result = await response.json();
+resultBox.innerText = result.idea;
+} catch (error) {
+resultBox.innerText = "Test idea (fallback)";
+console.error(error);
+}
 });
