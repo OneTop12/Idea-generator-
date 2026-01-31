@@ -26,7 +26,7 @@ document.getElementById("videoForm").addEventListener("submit", async function(e
     const result = await response.json();
     resultBox.innerText = result.idea;
   } catch (error) {
-    resultBox.innerText = "Error generating idea";
+    resultBox.innerText = "Test idea (fallback)";
     console.error(error);
   }
 });
