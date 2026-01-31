@@ -4,25 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ideas Generator</title>
-  
-  <!-- الكود القديم CSS يظل كما هو -->
-  <link rel="stylesheet" href="old-style.css">
-  
-  <!-- ربط CSS الجديد بدون مسح القديم -->
-  <script>
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'style.css'; // اسم ملف CSS الجديد
-    document.head.appendChild(link);
-  </script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- الكود القديم HTML يبقى كما هو -->
   <header>
-    <h1>Get ideas and challenges for your content</h1>
+    <h1>Content Idea Generator</h1>
+    <p>Get simple, creative ideas for your videos</p>
   </header>
 
-  <main class="ui">
+  <main>
     <form id="videoForm" class="card">
 
       <div class="field">
@@ -38,65 +28,62 @@
 
       <div class="field">
         <label>Content Type</label>
-        <input type="text" id="contentType" placeholder="Write your content type..." required>
+        <input type="text" id="contentType" placeholder="e.g., Gaming, Education" required>
       </div>
 
-      <div class="row">
-        <div class="field">
-          <label>Duration</label>
-          <input type="text" id="videoDuration" placeholder="5–10 min" required>
-        </div>
-        <div class="field">
-          <label>Participants</label>
-          <input type="text" id="participants" placeholder="Solo / Group" required>
-        </div>
+      <div class="field">
+        <label>Duration</label>
+        <input type="text" id="videoDuration" placeholder="e.g., 5–10 min" required>
       </div>
 
-      <div class="row">
-        <div class="field">
-          <label>Audience</label>
-          <select id="audience" required>
-            <option value="" disabled selected>Select audience...</option>
-            <option>Teens</option>
-            <option>Adults</option>
-            <option>All</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Gender</label>
-          <select id="gender" required>
-            <option value="" disabled selected>Select gender...</option>
-            <option>All</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
+      <div class="field">
+        <label>Participants</label>
+        <input type="text" id="participants" placeholder="Solo / Group" required>
       </div>
 
-      <div class="row">
-        <div class="field">
-          <label>Budget</label>
-          <select id="budget" required>
-            <option value="" disabled selected>Select budget...</option>
-            <option>Low</option>
-            <option>Medium</option>
-            <option>High</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Difficulty</label>
-          <select id="difficulty" required>
-            <option value="" disabled selected>Select difficulty...</option>
-            <option>Easy</option>
-            <option>Medium</option>
-            <option>Hard</option>
-          </select>
-        </div>
+      <div class="field">
+        <label>Audience</label>
+        <select id="audience" required>
+          <option value="" disabled selected>Select audience...</option>
+          <option>Teens</option>
+          <option>Adults</option>
+          <option>All</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Gender</label>
+        <select id="gender" required>
+          <option value="" disabled selected>Select gender...</option>
+          <option>All</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Budget</label>
+        <select id="budget" required>
+          <option value="" disabled selected>Select budget...</option>
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Difficulty</label>
+        <select id="difficulty" required>
+          <option value="" disabled selected>Select difficulty...</option>
+          <option>Easy</option>
+          <option>Medium</option>
+          <option>Hard</option>
+        </select>
       </div>
 
       <div class="field">
         <label>Location Description</label>
-        <textarea id="locationDesc" placeholder="Describe the place where you'll record..." rows="3"></textarea>
+        <textarea id="locationDesc" placeholder="Describe the recording place..." rows="3"></textarea>
       </div>
 
       <button type="submit" class="primary-btn">Generate Idea 🚀</button>
@@ -107,17 +94,9 @@
   </main>
 
   <footer>
-    <p>Privacy Policy · Contact Us</p>
+    <p>&copy; 2026 Ideas Generator</p>
   </footer>
 
-  <!-- الكود القديم JS يبقى -->
-  <script src="old-script.js"></script>
-
-  <!-- ربط JS الجديد بدون مسح القديم -->
-  <script>
-    var script = document.createElement('script');
-    script.src = 'script.js'; // اسم ملف JS الجديد
-    document.body.appendChild(script);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
