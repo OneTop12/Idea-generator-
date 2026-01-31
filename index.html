@@ -1,48 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ideas Generator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Content Idea Generator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Background -->
+  <div class="background"></div>
+
   <header>
-    <h1>Ideas Generator</h1>
-    <p>Generate creative YouTube video ideas instantly.</p>
+    <h1 class="title">Content Idea Generator</h1>
+    <p class="subtitle">AI-powered video ideas, done right.</p>
+    <span class="scroll-hint" onclick="document.getElementById('videoForm').scrollIntoView({behavior:'smooth'})">
+      click ↓
+    </span>
   </header>
 
   <main>
     <form id="videoForm">
-      <label for="videoType">Video Type:</label>
-      <input type="text" id="videoType" required>
 
-      <label for="contentType">Content Type:</label>
-      <input type="text" id="contentType" required>
+      <label>Platform</label>
+      <select id="platform" required>
+        <option>YouTube</option>
+        <option>TikTok</option>
+        <option>Instagram</option>
+      </select>
 
-      <label for="videoDuration">Video Duration:</label>
-      <input type="text" id="videoDuration" required>
+      <label>Video Duration</label>
+      <select id="videoDuration" required>
+        <option>Less than 3 minutes</option>
+        <option>3–8 minutes</option>
+        <option>8+ minutes</option>
+      </select>
 
-      <label for="participants">Participants:</label>
-      <input type="text" id="participants" required>
+      <label>Filming Location (available)</label>
+      <input type="text" id="location" placeholder="Room, street, studio..." required>
 
-      <label for="audience">Target Audience:</label>
-      <input type="text" id="audience" required>
+      <label>Content Type</label>
+      <select id="contentType" required>
+        <option>Gaming</option>
+        <option>Educational</option>
+        <option>Entertainment</option>
+        <option>Challenge</option>
+        <option>Podcast</option>
+      </select>
 
-      <label for="gender">Gender Focus:</label>
-      <input type="text" id="gender" required>
+      <label>Target Audience</label>
+      <select id="audience" required>
+        <option>Kids</option>
+        <option>Teens</option>
+        <option>Adults</option>
+        <option>All ages</option>
+      </select>
 
-      <label for="budget">Budget:</label>
-      <input type="text" id="budget" required>
+      <label>Target Gender</label>
+      <select id="gender" required>
+        <option>Any</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
 
-      <button type="submit">Generate Idea</button>
+      <label>Budget</label>
+      <select id="budget" required>
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+
+      <label>Number of Participants</label>
+      <input type="number" id="participants" min="1" required>
+
+      <label>Participants Type</label>
+      <select id="participantsType" required>
+        <option>Friends</option>
+        <option>Guests</option>
+        <option>Strangers</option>
+      </select>
+
+      <button type="submit">
+        Generate
+      </button>
+
+      <!-- Loader -->
+      <div id="loader" class="three-body hidden">
+        <div class="three-body__dot"></div>
+        <div class="three-body__dot"></div>
+        <div class="three-body__dot"></div>
+      </div>
+
     </form>
 
     <section id="ideaContent"></section>
   </main>
 
   <footer>
-    <p>&copy; 2026 Ideas Generator</p>
+    <p>© 2026 Content Idea Generator</p>
   </footer>
 
   <script src="script.js"></script>
