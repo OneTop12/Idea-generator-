@@ -1,73 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Video Idea Generator</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Creative Video Idea Generator</h1>
-    <p>Generate powerful, creative YouTube video ideas instantly!</p>
-  </header>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Ideas Generator</title>  
+  <link rel="stylesheet" href="style.css">  
+</head>  
+<body>  
+  <header>  
+    <h1>Ideas Generator</h1>  
+    <p>Generate creative YouTube video ideas instantly.</p>  
+  </header>    <main>  
+    <form id="videoForm">  
+      <label for="videoType">Video Type:</label>  
+      <input type="text" id="videoType" required>  <label for="contentType">Content Type:</label>  
+  <input type="text" id="contentType" required>  
 
-  <main>
-    <form id="videoForm">
-      <div class="form-group">
-        <label for="videoType">Platform / Video Type</label>
-        <input type="text" id="videoType" required>
-      </div>
+  <label for="videoDuration">Video Duration:</label>  
+  <input type="text" id="videoDuration" required>  
 
-      <div class="form-group">
-        <label for="contentType">Content Type</label>
-        <input type="text" id="contentType" required>
-      </div>
+  <label for="participants">Participants:</label>  
+  <input type="text" id="participants" required>  
 
-      <div class="form-group">
-        <label for="videoDuration">Duration</label>
-        <input type="text" id="videoDuration" required>
-      </div>
+  <label for="audience">Target Audience:</label>  
+  <input type="text" id="audience" required>  
 
-      <div class="form-group">
-        <label for="participants">Number of Participants</label>
-        <input type="text" id="participants" required>
-      </div>
+  <label for="gender">Gender Focus:</label>  
+  <input type="text" id="gender" required>  
 
-      <div class="form-group">
-        <label for="audience">Target Audience</label>
-        <input type="text" id="audience" required>
-      </div>
+  <label for="budget">Budget:</label>  
+  <input type="text" id="budget" required>  
 
-      <div class="form-group">
-        <label for="gender">Gender Focus</label>
-        <input type="text" id="gender" required>
-      </div>
+  <button type="submit">Generate Idea</button>  
+</form>  
 
-      <div class="form-group">
-        <label for="budget">Budget</label>
-        <input type="text" id="budget" required>
-      </div>
+<section id="ideaContent"></section>
 
-      <div class="form-group">
-        <label for="participantsType">Type of Participants</label>
-        <input type="text" id="participantsType" required>
-      </div>
-
-      <button type="submit">Generate Idea</button>
-    </form>
-
-    <section id="ideaContent">
-      <div class="idea-box" id="ideaTitle"></div>
-      <div class="idea-box" id="ideaDescription"></div>
-      <div class="idea-box" id="ideaHashtags"></div>
-      <div class="idea-box" id="ideaStrengths"></div>
-      <div class="idea-box" id="ideaSuggestions"></div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Creative Ideas Generator</p>
-  </footer>
-</body>
+  </main>    <footer>  
+    <p>&copy; 2026 Ideas Generator</p>  
+  </footer>    <script src="script.js"></script>  </body>  
 </html>
