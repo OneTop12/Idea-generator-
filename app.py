@@ -1,46 +1,7 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import os
 import google.generativeai as genai
+import os
 
-app = Flask(__name__)
-CORS(app)
-
-# المفتاح من متغير البيئة
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-@app.route("/")
-def home():
-    return "Backend is running"
-
-@app.route("/generate_idea", methods=["POST"])
-def generate_idea():
-    data = request.json
-
-    prompt = f"""
-    Generate a creative YouTube video idea.
-
-    Video Type: {data.get("type", "General")}
-    Content Type: {data.get("content_type", "General")}
-    Duration: {data.get("duration", "Any")}
-    Participants: {data.get("participants", "Any")}
-    Audience: {data.get("audience", "General")}
-    Gender Focus: {data.get("gender", "Any")}
-    Budget: {data.get("budget", "Any")}
-
-    Include suggested hashtags and a short catchy title.
-    """
-
-    try:
-        # موديل متاح اليوم بشكل رسمي ومجاني
-        model = genai.GenerativeModel("models/text-bison-001")
-        response = model.generate_content(prompt)
-        return jsonify({"idea": response.text})
-
-    except Exception as e:
-        # fallback آمن
-        return jsonify({"idea": f"Test idea (fallback) — Error: {str(e)}"})
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+for model in genai.list_models():
+    print(model)
