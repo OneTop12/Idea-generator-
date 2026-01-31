@@ -1,41 +1,104 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>Ideas Generator</title>  
-  <link rel="stylesheet" href="style.css">  
-</head>  
-<body>  
-  <header>  
-    <h1>Ideas Generator</h1>  
-    <p>Generate creative YouTube video ideas instantly.</p>  
-  </header>    <main>  
-    <form id="videoForm">  
-      <label for="videoType">Video Type:</label>  
-      <input type="text" id="videoType" required>  <label for="contentType">Content Type:</label>  
-  <input type="text" id="contentType" required>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ideas Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Get ideas and challenges for your content</h1>
+  </header>
 
-  <label for="videoDuration">Video Duration:</label>  
-  <input type="text" id="videoDuration" required>  
+  <main class="ui">
+    <form id="videoForm" class="card">
 
-  <label for="participants">Participants:</label>  
-  <input type="text" id="participants" required>  
+      <div class="field">
+        <label>Video Type</label>
+        <select id="videoType" required>
+          <option value="" disabled selected>Select type...</option>
+          <option>YouTube</option>
+          <option>Shorts</option>
+          <option>TikTok</option>
+          <option>Instagram</option>
+        </select>
+      </div>
 
-  <label for="audience">Target Audience:</label>  
-  <input type="text" id="audience" required>  
+      <div class="field">
+        <label>Content Type</label>
+        <input type="text" id="contentType" placeholder="Write your content type..." required>
+      </div>
 
-  <label for="gender">Gender Focus:</label>  
-  <input type="text" id="gender" required>  
+      <div class="row">
+        <div class="field">
+          <label>Duration</label>
+          <input type="text" id="videoDuration" placeholder="5–10 min" required>
+        </div>
+        <div class="field">
+          <label>Participants</label>
+          <input type="text" id="participants" placeholder="Solo / Group" required>
+        </div>
+      </div>
 
-  <label for="budget">Budget:</label>  
-  <input type="text" id="budget" required>  
+      <div class="row">
+        <div class="field">
+          <label>Audience</label>
+          <select id="audience" required>
+            <option value="" disabled selected>Select audience...</option>
+            <option>Teens</option>
+            <option>Adults</option>
+            <option>All</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <select id="gender" required>
+            <option value="" disabled selected>Select gender...</option>
+            <option>All</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+      </div>
 
-  <button type="submit">Generate Idea</button>  
-</form>  
+      <div class="row">
+        <div class="field">
+          <label>Budget</label>
+          <select id="budget" required>
+            <option value="" disabled selected>Select budget...</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Difficulty</label>
+          <select id="difficulty" required>
+            <option value="" disabled selected>Select difficulty...</option>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+          </select>
+        </div>
+      </div>
 
-<section id="ideaContent"></section>
+      <div class="field">
+        <label>Location Description</label>
+        <textarea id="locationDesc" placeholder="Describe the place where you'll record..." rows="3"></textarea>
+      </div>
 
-  </main>    <footer>  
-    <p>&copy; 2026 Ideas Generator</p>  
-  </footer>    <script src="script.js"></script>  </body>  
+      <button type="submit" class="primary-btn">Generate Idea 🚀</button>
+
+    </form>
+
+    <section id="ideaContent" class="result"></section>
+  </main>
+
+  <footer>
+    <p>Privacy Policy · Contact Us</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
