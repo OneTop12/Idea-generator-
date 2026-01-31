@@ -4,9 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ideas Generator</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <!-- الكود القديم CSS يظل كما هو -->
+  <link rel="stylesheet" href="old-style.css">
+  
+  <!-- ربط CSS الجديد بدون مسح القديم -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'style.css'; // اسم ملف CSS الجديد
+    document.head.appendChild(link);
+  </script>
 </head>
 <body>
+  <!-- الكود القديم HTML يبقى كما هو -->
   <header>
     <h1>Get ideas and challenges for your content</h1>
   </header>
@@ -99,6 +110,14 @@
     <p>Privacy Policy · Contact Us</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- الكود القديم JS يبقى -->
+  <script src="old-script.js"></script>
+
+  <!-- ربط JS الجديد بدون مسح القديم -->
+  <script>
+    var script = document.createElement('script');
+    script.src = 'script.js'; // اسم ملف JS الجديد
+    document.body.appendChild(script);
+  </script>
 </body>
 </html>
