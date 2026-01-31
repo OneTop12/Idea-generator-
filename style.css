@@ -59,11 +59,6 @@ textarea {
   resize: vertical;
 }
 
-.field select {
-  appearance: none;
-  cursor: pointer;
-}
-
 .row {
   display: flex;
   gap: 1rem;
@@ -94,6 +89,7 @@ textarea {
   border-radius: 16px;
   background: #f0f0ff;
   font-size: 0.95rem;
+  white-space: pre-wrap;
 }
 
 footer {
