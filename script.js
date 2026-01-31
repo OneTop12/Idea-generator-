@@ -29,9 +29,9 @@ document.getElementById("videoForm").addEventListener("submit", async function(e
     );
 
     const result = await response.json();
-    let text = result.idea || result.text || "";
+    const text = result.idea || result.text || "";
 
-    // حاول نقسم النص على العناصر (لو الموديل رجعهم بالشكل "Hook: ... Description: ...")
+    // تقسيم تلقائي على العناصر أو fallback
     const hookMatch = text.match(/Hook:\s*(.+?)(?=\n|$)/i);
     const descriptionMatch = text.match(/Description:\s*(.+?)(?=\n|$)/i);
     const hashtagsMatch = text.match(/Hashtags:\s*(.+?)(?=\n|$)/i);
@@ -45,7 +45,7 @@ document.getElementById("videoForm").addEventListener("submit", async function(e
     ideaText += `Strengths: ${strengthsMatch ? strengthsMatch[1] : ""}\n\n`;
     ideaText += `Suggestions: ${suggestionsMatch ? suggestionsMatch[1] : ""}`;
 
-    // اختصار النص إذا طويل
+    // اختصار النص الطويل
     if (ideaText.length > 800) ideaText = ideaText.slice(0, 800) + "...";
 
     resultBox.innerText = ideaText;
