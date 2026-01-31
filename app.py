@@ -6,7 +6,7 @@ import google.generativeai as genai
 app = Flask(__name__)
 CORS(app)
 
-# المفتاح مضبوط مسبقًا
+# ضبط المفتاح
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 @app.route("/")
@@ -32,17 +32,17 @@ def generate_idea():
     """
 
     try:
-        # الطريقة الصحيحة للـ Gemini API الحديثة
-        response = genai.generate_text(
-            model="gemini-1.5",  # موديل رسمي متاح
+        # الطريقة الرسمية الحديثة
+        response = genai.Text.create(
+            model="gemini-1.5",
             prompt=prompt,
             temperature=0.7,
             max_output_tokens=300
         )
-        return jsonify({"idea": response.text})
+        return jsonify({"idea": response.result[0].content[0].text})
 
     except Exception as e:
-        # fallback آمن لتجنب crash
+        # fallback آمن
         return jsonify({"idea": f"Test idea (fallback) — Error: {str(e)}"})
 
 if __name__ == "__main__":
