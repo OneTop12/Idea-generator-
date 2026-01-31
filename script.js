@@ -27,16 +27,15 @@ document.getElementById("videoForm").addEventListener("submit", async function(e
         body: JSON.stringify(data)
       }
     );
+
     const result = await response.json();
 
-    // توليد النتيجة بشكل منسق
     let ideaText = `Hook: ${result.hook || ""}\n\n`;
     ideaText += `Description: ${result.description || ""}\n\n`;
     ideaText += `Hashtags: ${result.hashtags || ""}\n\n`;
     ideaText += `Strengths: ${result.strengths || ""}\n\n`;
     ideaText += `Suggestions: ${result.suggestions || ""}`;
 
-    // تقصير النتيجة لو طويلة
     if (ideaText.length > 800) ideaText = ideaText.slice(0, 800) + "...";
 
     resultBox.innerText = ideaText;
